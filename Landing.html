@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderlust Travel Agency</title>
+    <style>
+        /* Reset default styles */
+        body, h1, h2, h3, p, ul, li, form, input {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Global styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f2f2f2;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        header {
+            background: url('https://source.unsplash.com/1600x900/?travel') no-repeat center center/cover;
+            height: 100vh;
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+        }
+
+        .logo h1 {
+            font-size: 36px;
+            font-family: 'Georgia', serif;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            font-size: 18px;
+            padding: 10px 15px;
+            border-radius: 25px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .nav-links a:hover {
+            background: #ff5722;
+            color: #fff;
+        }
+
+        .hero {
+            position: relative;
+            z-index: 2;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 100px 20px;
+        }
+
+        .hero h2 {
+            font-size: 60px;
+            font-family: 'Georgia', serif;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero p {
+            font-size: 26px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .button {
+            padding: 15px 30px;
+            background: #ff7f50;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-transform: uppercase;
+        }
+
+        .button:hover {
+            background: #ff5722;
+        }
+
+        section {
+            padding: 60px 20px;
+            text-align: center;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+            color: #333;
+            background-size: cover;
+            background-position: center;
+        }
+
+        section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            z-index: 1;
+        }
+
+        section h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .destinations {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .destination-item {
+            width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .destination-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .destination-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .destination-content {
+            padding: 15px;
+        }
+
+        .destination-content h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .destination-content p {
+            margin-bottom: 10px;
+            color: #666;
+        }
+
+        .destination-content .price {
+            font-weight: bold;
+            color: #333;
+        }
+
+        #booking form {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        form label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #333;
+        }
+
+        form input[type="text"], form input[type="email"], form input[type="date"], form input[type="number"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        form input[type="submit"] {
+            background: #ff7f50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        form input[type="submit"]:hover {
+            background: #ff5722;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        .footer-waves {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: url('https://www.svgrepo.com/show/353817/wave-top.svg') no-repeat top;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-overlay"></div>
+        <nav>
+            <div class="logo">
+                <h1>Wanderlust</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#destinations">Destinations</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#booking" class="button">Book Now</a></li>
+            </ul>
+        </nav>
+        <div class="hero">
+            <h2>Explore the World with Wanderlust</h2>
+            <p>Your adventure awaits. Discover new destinations today!</p>
+            <a href="#destinations" class="button">See Destinations</a>
+        </div>
+    </header>
+
+    <section id="destinations">
+        <h2>Our Destinations</h2>
+        <div class="destinations">
+            <div class="destination-item">
+                <img src="https://source.unsplash.com/300x200/?bali" alt="Bali, Indonesia">
+                <div class="destination-content">
+                    <h3>Bali, Indonesia</h3>
+                    <p>Experience the serene beaches, vibrant culture, and exotic cuisine.</p>
+                    <p class="price">Starting at $1,299</p>
+                </div>
+            </div>
+            <div class="destination-item">
+                <img src="https://source.unsplash.com/300x200/?paris" alt="Paris, France">
+                <div class="destination-content">
+                    <h3>Paris, France</h3>
+                    <p>Explore the romantic city of lights, iconic landmarks, and exquisite dining.</p>
+                    <p class="price">Starting at $1,899</p>
+                </div>
+            </div>
+            <div class="destination-item">
+                <img src="https://source.unsplash.com/300x200/?tokyo" alt="Tokyo, Japan">
+                <div class="destination-content">
+                    <h3>Tokyo, Japan</h3>
+                    <p>Discover the blend of tradition and innovation in the bustling metropolis.</p>
+                    <p class="price">Starting at $1,499</p>
+                </div>
+            </div>
+            <div class="destination-item">
+                <img src="https://source.unsplash.com/300x200/?new-york" alt="New York, USA">
+                <div class="destination-content">
+                    <h3>New York, USA</h3>
+                    <p>Experience the city that never sleeps with its vibrant atmosphere.</p>
+                    <p class="price">Starting at $1,099</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Wanderlust Travel Agency has been crafting unforgettable travel experiences for adventurers around the world. Our team of travel experts is dedicated to providing personalized and unique journeys that cater to your interests and passions. We believe in exploring the world in style and comfort, making your travel dreams come true.</p>
+    </section>
+
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>Email: info@wanderlust.com</p>
+        <p>Phone: (123) 456-7890</p>
+        <p>Address: 123 Wander Lane, Adventure City, AC 12345</p>
+    </section>
+
+    <section id="booking">
+        <h2>Book Your Trip</h2>
+        <form action="#" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="destination">Destination:</label>
+            <input type="text" id="destination" name="destination" required>
+            
+            <label for="date">Travel Date:</label>
+            <input type="date" id="date" name="date" required>
+            
+            <label for="guests">Number of Guests:</label>
+            <input type="number" id="guests" name="guests" required>
+            
+            <input type="submit" value="Book Now">
+        </form>
+    </section>
+
+    <footer>
+        <div class="footer-waves"></div>
+        <p>&copy; 2024 Wanderlust Travel Agency. All rights reserved.</p>
+    </footer>
+</body>
+</html>
